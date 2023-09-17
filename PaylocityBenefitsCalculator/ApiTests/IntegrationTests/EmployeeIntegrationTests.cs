@@ -167,7 +167,7 @@ public class EmployeeIntegrationTests : IntegrationTest
     }
     
     [Fact]
-    public async Task WhenAskedForAnEmployee_AndEmployeeIdIs1_ShouldReturnCorrectPaycheck()
+    public async Task WhenAskedForAnEmployeePaycheck_AndEmployeeIdIs1_ShouldReturnCorrectPaycheck()
     {
         var response = await HttpClient.GetAsync("/api/v1/employees/1/paycheck");
         var paycheck = new GetEmployeePaycheckDto()
@@ -178,7 +178,7 @@ public class EmployeeIntegrationTests : IntegrationTest
     }
     
     [Fact]
-    public async Task WhenAskedForAnEmployee_AndEmployeeIdIs2_ShouldReturnCorrectPaycheck()
+    public async Task WhenAskedForAnEmployeePaycheck_AndEmployeeIdIs2_ShouldReturnCorrectPaycheck()
     {
         var response = await HttpClient.GetAsync("/api/v1/employees/2/paycheck");
         var paycheck = new GetEmployeePaycheckDto()
@@ -189,7 +189,7 @@ public class EmployeeIntegrationTests : IntegrationTest
     }
     
     [Fact]
-    public async Task WhenAskedForAnEmployee_AndEmployeeIdIs3_ShouldReturnCorrectPaycheck()
+    public async Task WhenAskedForAnEmployeePaycheck_AndEmployeeIdIs3_ShouldReturnCorrectPaycheck()
     {
         var response = await HttpClient.GetAsync("/api/v1/employees/3/paycheck");
         var paycheck = new GetEmployeePaycheckDto()
@@ -217,6 +217,13 @@ public class EmployeeIntegrationTests : IntegrationTest
     public async Task WhenAskedForANonexistentEmployee_AndIdIsNotInDatabase_ShouldReturn404()
     {
         var response = await HttpClient.GetAsync("/api/v1/employees/10");
+        await response.ShouldReturn(HttpStatusCode.NotFound);
+    }
+    
+    [Fact]
+    public async Task WhenAskedForANonexistentEmployeePaycheck__ShouldReturn404()
+    {
+        var response = await HttpClient.GetAsync("/api/v1/employees/0/paycheck");
         await response.ShouldReturn(HttpStatusCode.NotFound);
     }
 }
