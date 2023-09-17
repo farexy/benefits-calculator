@@ -29,9 +29,11 @@ builder.Services.AddTransient<IDependentsRepository, DependentsRepository>();
 builder.Services.AddTransient<IEmployeesRepository, EmployeesRepository>();
 builder.Services.AddTransient<IPaycheckCalculator, PaycheckCalculator>();
 
+// using mediator for handling requests logic
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining<Program>());
 
+// Using EF as a data access
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
     opt.UseInMemoryDatabase("BenefitsCalculator"));
 builder.Services.AddAutoMapper();

@@ -11,7 +11,6 @@ namespace ApiTests.IntegrationTests;
 public class DependentIntegrationTests : IntegrationTest
 {
     [Fact]
-    //task: make test pass
     public async Task WhenAskedForAllDependents_ShouldReturnAllDependents()
     {
         var response = await HttpClient.GetAsync("/api/v1/dependents");
